@@ -11,3 +11,7 @@
 ## Funcionalidades (Métodos)
 
 - **conducir(int kmRecorridos)**: Resta los kilómetros recorridos al valor de kilometrosRestantes, siempre que haya una cantidad suficiente disponible.
+
+## Documentación de Test Cases
+
+Para consultar los casos de prueba definidos para este proyecto, revisa el documento ubicado en [docs/test-cases.md](docs/test-cases.md).
