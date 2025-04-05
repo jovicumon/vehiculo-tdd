@@ -23,4 +23,46 @@ public class VehiculoTest {
         // Se espera que los kilómetros no cambien
         assertEquals(100, vehiculo.getKilometrosRestantes());
     }
+
+    @Test
+    public void testConducirExcedeKilometrajeDisponible() {
+        // Se crea un vehículo con 100 km disponibles
+        Vehiculo vehiculo = new Vehiculo("Model S", "Tesla", "electrico", 100, false);
+        vehiculo.conducir(150);
+        // Se espera que los kilómetros permanezcan en 100
+        assertEquals(100, vehiculo.getKilometrosRestantes());
+    }
+
+    @Test
+    public void testValorNegativoEnConducir() {
+        Vehiculo vehiculo = new Vehiculo("Civic", "Honda", "combustion", 100, false);
+        // Se espera que al intentar conducir un valor negativo, se lance una excepción.
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            vehiculo.conducir(-10);
+        });
+        String expectedMessage = "El número de kilómetros recorridos debe ser positivo";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    public void testEsTransformer() {
+        // Crea un vehículo que sea un Transformer.
+        Vehiculo vehiculo = new Vehiculo("Optimus Prime", "Transformers", "electrico", 500, true);
+        // Se verifica que el getter isEsTransformer retorne true.
+        assertTrue(vehiculo.isEsTransformer());
+    }
+    @Test
+    public void testConstructorTipoMotorInvalido() {
+        // Se espera que al pasar "hibrido" (valor inválido) en tipoMotor se lance una IllegalArgumentException.
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            new Vehiculo("Civic", "Honda", "hibrido", 100, false);
+        });
+        // Mensaje esperado definido en el constructor de Vehiculo.
+        String expectedMessage = "El tipo de motor debe ser 'combustion' o 'electrico'";
+        String actualMessage = exception.getMessage();
+        // Verifica que el mensaje de la excepción contenga lo esperado.
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
 }
