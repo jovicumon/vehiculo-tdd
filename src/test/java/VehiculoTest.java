@@ -8,6 +8,8 @@ public class VehiculoTest {
         // Se crea un vehículo con 200 km disponibles
         Vehiculo vehiculo = new Vehiculo("Corolla", "Toyota", "combustion", 200, false);
         vehiculo.conducir(50);
+        int kmRestantes = vehiculo.getKilometrosRestantes();
+        System.out.println("Kilómetros restantes después de conducir: 150");
         // Se espera que los kilómetros restantes disminuyan a 150
         assertEquals(150, vehiculo.getKilometrosRestantes());
     }
@@ -42,6 +44,7 @@ public class VehiculoTest {
         });
         String expectedMessage = "El número de kilómetros recorridos debe ser positivo";
         String actualMessage = exception.getMessage();
+        System.out.println("Mensaje de excepción: " + actualMessage);
         assertTrue(actualMessage.contains(expectedMessage));
     }
 
@@ -49,6 +52,8 @@ public class VehiculoTest {
     public void testEsTransformer() {
         // Crea un vehículo que sea un Transformer.
         Vehiculo vehiculo = new Vehiculo("Optimus Prime", "Transformers", "electrico", 500, true);
+        boolean esTransformer = vehiculo.isEsTransformer();
+        System.out.println ("Es un Transformer? " + (esTransformer ? "Si y mola" : "No"));
         // Se verifica que el getter isEsTransformer retorne true.
         assertTrue(vehiculo.isEsTransformer());
     }
@@ -61,6 +66,7 @@ public class VehiculoTest {
         // Mensaje esperado definido en el constructor de Vehiculo.
         String expectedMessage = "El tipo de motor debe ser 'combustion' o 'electrico'";
         String actualMessage = exception.getMessage();
+        System.out.println("Mensaje de excepción: " + actualMessage);
         // Verifica que el mensaje de la excepción contenga lo esperado.
         assertTrue(actualMessage.contains(expectedMessage));
     }
