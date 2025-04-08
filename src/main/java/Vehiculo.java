@@ -79,14 +79,15 @@ public class Vehiculo {
     }
 
     // Métod para simular la conducción: se restan los kilómetros recorridos
-    public void conducir(int kmRecorridos) {
-        if (kmRecorridos < 0) {
-            throw new IllegalArgumentException("Los kilómetros recorridos deben ser positivos");
+    public boolean conducir(int kilometros) {
+        if (kilometros < 0) {
+            throw new IllegalArgumentException("Los kilómetros restantes no pueden ser negativos");
         }
-        if (kmRecorridos > kilometrosRestantes) {
-            System.out.println("No hay suficientes kilómetros restantes para recorrer esa distancia.");
+        if (kilometrosRestantes >= kilometros) {
+            kilometrosRestantes -= kilometros;
+            return true;
         } else {
-            kilometrosRestantes -= kmRecorridos;
+            return false;
         }
     }
 }
