@@ -62,7 +62,7 @@
         <td>TC007</td>
         <td>Método conducir</td>
         <td>Probar que conducir con valor negativo lanza excepción</td>
-        <td>Conducir(-10)</td>
+        <td>Conducir(-50)</td>
         <td>Se lanza IllegalArgumentException</td>
         <td>Revisar el mensaje de la excepción</td>
     </tr>
