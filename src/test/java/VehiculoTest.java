@@ -40,7 +40,7 @@ public class VehiculoTest {
         Vehiculo vehiculo = new Vehiculo("Civic", "Honda", "combustion", 100, false);
         // Se espera que al intentar conducir un valor negativo, se lance una excepción.
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            vehiculo.conducir(-10);
+            vehiculo.conducir(-50);
         });
         String expectedMessage = "Los kilómetros restantes no pueden ser negativos";
         String actualMessage = exception.getMessage();
