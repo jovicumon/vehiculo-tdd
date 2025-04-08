@@ -1,0 +1,32 @@
+  name: Maven CI
+
+  on: [push, pull_request]
+
+  jobs:
+    build:
+      runs-on: ubuntu-latest
+
+      steps:
+        # Paso 1: Clonar el repositorio
+        - name: Checkout code
+          uses: actions/checkout@v3
+
+        # Paso 2: Instalar JDK 11 (puedes cambiar la versión si lo deseas)
+        - name: Set up Java
+          uses: actions/setup-java@v3
+          with:
+            distribution: 'temurin'
+            java-version: '11'
+
+        # Paso 3: Caché de dependencias de Maven para acelerar el build
+        - name: Cache Maven packages
+          uses: actions/cache@v3
+          with:
+            path: ~/.m2
+            key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+            restore-keys: |
+              ${{ runner.os }}-maven-
+
+        # Paso 4: Compilar el proyecto y ejecutar tests
+        - name: Build with Maven
+          run: mvn clean install
